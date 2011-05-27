@@ -3,6 +3,7 @@ source :rubygems
 gem 'mysql', '2.8.1'
 gem 'rails', '3.0.6'
 gem 'jquery-rails', '0.2.7'
+gem 'client_side_validations', '3.0.0'
 gem 'devise', '1.2.1'
 
 group :test, :development do
