@@ -1,6 +1,6 @@
 class Category < ActiveRecord::Base
   belongs_to :user
-  has_many :news
+  has_many :articles
 
   validates :title, :presence => true
   validates_uniqueness_of :title

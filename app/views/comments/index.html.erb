@@ -2,8 +2,7 @@
 
 <table>
   <tr>
-    <th>User</th>
-    <th></th>
+    <th>Article</th>
     <th>Description</th>
     <th></th>
     <th></th>
@@ -12,16 +11,15 @@
 
 <% @comments.each do |comment| %>
   <tr>
-    <td><%= comment.user_id %></td>
-    <td><%= comment. %></td>
+    <td><%= comment.article.title %></td>
     <td><%= comment.description %></td>
-    <td><%= link_to 'Show', comment %></td>
-    <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
-    <td><%= link_to 'Destroy', comment, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Show', user_comment_path(current_user, comment) %></td>
+    <td><%= link_to 'Edit', edit_user_comment_path(current_user, comment) %></td>
+    <td><%= link_to 'Destroy', user_comment_path(current_user, comment), :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Comment', new_comment_path %>
+<%= link_to 'New Comment', new_user_comment_path %>

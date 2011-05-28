@@ -1,4 +1,4 @@
-<%= form_for(@vote) do |f| %>
+<%= form_for([current_user, @vote]) do |f| %>
   <% if @vote.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@vote.errors.count, "error") %> prohibited this vote from being saved:</h2>
@@ -12,17 +12,14 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :user_id %><br />
-    <%= f.text_field :user_id %>
+    <%= f.select :article_id, options_from_collection_for_select(current_user.articles, "id", "title") %>
   </div>
+
   <div class="field">
-    <%= f.label : %><br />
-    <%= f.text_field : %>
+    <%= f.label :result %> For/Against<br />
+    <%= f.check_box(:result, {}, "for", "against") %>
   </div>
-  <div class="field">
-    <%= f.label :result %><br />
-    <%= f.text_field :result %>
-  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

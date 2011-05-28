@@ -10,7 +10,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110527191952) do
+ActiveRecord::Schema.define(:version => 20110528184857) do
+
+  create_table "articles", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "category_id"
+    t.string   "title"
+    t.text     "description"
+    t.string   "source"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "categories", :force => true do |t|
     t.integer  "user_id"
@@ -21,7 +31,7 @@ ActiveRecord::Schema.define(:version => 20110527191952) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
-    t.integer  "new_id"
+    t.integer  "article_id"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -33,6 +43,12 @@ ActiveRecord::Schema.define(:version => 20110527191952) do
     t.string   "title"
     t.text     "description"
     t.string   "source"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_children", :force => true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -58,9 +74,15 @@ ActiveRecord::Schema.define(:version => 20110527191952) do
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
+  create_table "users_children", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "votes", :force => true do |t|
     t.integer  "user_id"
-    t.integer  "new_id"
+    t.integer  "article_id"
     t.string   "result"
     t.datetime "created_at"
     t.datetime "updated_at"

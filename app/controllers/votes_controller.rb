@@ -4,7 +4,7 @@ class VotesController < ApplicationController
   # GET /votes
   # GET /votes.xml
   def index
-    @votes = Vote.all
+    @votes = current_user.votes
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,7 +15,7 @@ class VotesController < ApplicationController
   # GET /votes/1
   # GET /votes/1.xml
   def show
-    @vote = Vote.find(params[:id])
+    @vote = current_user.votes.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -26,7 +26,7 @@ class VotesController < ApplicationController
   # GET /votes/new
   # GET /votes/new.xml
   def new
-    @vote = Vote.new
+    @vote = current_user.votes.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -36,17 +36,17 @@ class VotesController < ApplicationController
 
   # GET /votes/1/edit
   def edit
-    @vote = Vote.find(params[:id])
+    @vote = current_user.votes.find(params[:id])
   end
 
   # POST /votes
   # POST /votes.xml
   def create
-    @vote = Vote.new(params[:vote])
+    @vote = current_user.votes.new(params[:vote])
 
     respond_to do |format|
       if @vote.save
-        format.html { redirect_to(@vote, :notice => 'Vote was successfully created.') }
+        format.html { redirect_to(user_vote_path(current_user, @vote), :notice => 'Vote was successfully created.') }
         format.xml  { render :xml => @vote, :status => :created, :location => @vote }
       else
         format.html { render :action => "new" }
@@ -58,11 +58,11 @@ class VotesController < ApplicationController
   # PUT /votes/1
   # PUT /votes/1.xml
   def update
-    @vote = Vote.find(params[:id])
+    @vote = current_user.votes.find(params[:id])
 
     respond_to do |format|
       if @vote.update_attributes(params[:vote])
-        format.html { redirect_to(@vote, :notice => 'Vote was successfully updated.') }
+        format.html { redirect_to(user_vote_path(current_user, @vote), :notice => 'Vote was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -74,11 +74,11 @@ class VotesController < ApplicationController
   # DELETE /votes/1
   # DELETE /votes/1.xml
   def destroy
-    @vote = Vote.find(params[:id])
+    @vote = current_user.votes.find(params[:id])
     @vote.destroy
 
     respond_to do |format|
-      format.html { redirect_to(votes_url) }
+      format.html { redirect_to(user_votes_url) }
       format.xml  { head :ok }
     end
   end

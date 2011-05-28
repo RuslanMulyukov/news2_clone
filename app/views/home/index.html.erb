@@ -1,1 +1,14 @@
+<%= paginate @articles %>
+<div style="clear:both"></div><br />
+
+<% @articles.each do |article| %>
+  <h1><%= article.title %></h1>
+  <h2><%= article.user.login %></h2>
+  <strong><%= article.created_at %></strong><br />
+  <p><%= article.description %></p><br />
+  <%= link_to "Vote on Article" %> | <%= link_to "Comment on Article" %>
+<% end %><br /><br/><br />
+
+<%= paginate @articles %>
+<div style="clear:both"></div><br/><br />
 

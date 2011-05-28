@@ -2,5 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @comment %> |
-<%= link_to 'Back', comments_path %>
+<%= link_to 'Show', edit_user_comment_path(current_user, @comment) %> |
+<%= link_to 'Back', user_comments_path %>
