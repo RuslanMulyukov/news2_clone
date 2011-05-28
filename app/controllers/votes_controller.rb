@@ -1,4 +1,6 @@
 class VotesController < ApplicationController
+  before_filter :authenticate_user!
+
   # GET /votes
   # GET /votes.xml
   def index
