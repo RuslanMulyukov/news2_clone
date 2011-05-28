@@ -2,7 +2,6 @@
 
 <table>
   <tr>
-    <th>User</th>
     <th>Title</th>
     <th></th>
     <th></th>
@@ -11,15 +10,14 @@
 
 <% @categories.each do |category| %>
   <tr>
-    <td><%= category.user_id %></td>
     <td><%= category.title %></td>
-    <td><%= link_to 'Show', category %></td>
-    <td><%= link_to 'Edit', edit_category_path(category) %></td>
-    <td><%= link_to 'Destroy', category, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Show', user_category_path(current_user, category) %></td>
+    <td><%= link_to 'Edit', edit_user_category_path(current_user, category) %></td>
+    <td><%= link_to 'Destroy', user_category_path(current_user,category), :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Category', new_category_path %>
+<%= link_to 'New Category', new_user_category_path %>
