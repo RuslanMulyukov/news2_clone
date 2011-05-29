@@ -10,6 +10,8 @@ News2Clone::Application.routes.draw do
     resources :comments
     resources :votes
   end
+
+  match "vote" => "home#vote"
   
   root :to => "home#index"
 end

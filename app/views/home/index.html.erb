@@ -1,12 +1,32 @@
+<script type="text/javascript">
+
+$(function() {
+  $('.vote_on').click(function() {
+    var id = $(this).parents('.article').attr('id');
+    $.post("<%= vote_path %>", { user_id : "<%= current_user.id %>", article_id : id, result : 'for' } );
+  });
+
+  $('.vote_against').click(function() {
+    var id = $(this).parents('.article').attr('id');
+    $.post("<%= vote_path %>", { user_id : "<%= current_user.id %>", article_id : id, result : 'against' } );
+  });
+});
+
+</script>
+
 <%= paginate @articles %>
 <div style="clear:both"></div><br />
 
 <% @articles.each do |article| %>
-  <h1><%= article.title %></h1>
-  <h2><%= article.user.login %></h2>
-  <strong><%= article.created_at %></strong><br />
-  <p><%= article.description %></p><br />
-  <%= link_to "Vote on Article" %> | <%= link_to "Comment on Article" %>
+  <div class="article" id="<%= article.id %>">
+    <h2><%= link_to(article.title, user_article_path(article.user, article)) %></h2>
+     posted by <strong><%= link_to(article.user.login, user_path(article.user)) %></strong>
+     at <strong><%= article.created_at.strftime("%b'%e %Y %H:%M") %></strong><br />
+     <p><%= truncate(article.description, :length => 550) %></p>
+     <strong class="votes_for"><%= article.votes.for.count %></strong> <%= link_to("Vote on Article", "javascript: void(0);", :class => 'vote_on') %> |
+     <strong class="votes_against"><%= article.votes.against.count %></strong> <%= link_to("Vote against Article", "javascript: void(0);", :class => 'vote_against') %> |
+     <%= link_to "Comment on Article" %><br /><br />
+  </div>
 <% end %><br /><br/><br />
 
 <%= paginate @articles %>
