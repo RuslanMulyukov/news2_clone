@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   before_filter :authenticate_user!
+  uses_tiny_mce
 
   # GET /articles
   # GET /articles.xml

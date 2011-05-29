@@ -3,6 +3,7 @@ source :rubygems
 gem 'mysql', '2.8.1'
 gem 'rails', '3.0.6'
 gem 'devise', '1.2.1'
+gem 'tiny_mce'
 gem 'kaminari', '0.10.4'
 gem 'nifty-generators', '0.4.6'
 gem 'jquery-rails', '0.2.7'

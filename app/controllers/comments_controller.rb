@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_filter :authenticate_user!
+  uses_tiny_mce
 
   # GET /comments
   # GET /comments.xml
