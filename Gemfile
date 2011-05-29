@@ -5,11 +5,9 @@ gem 'rails', '3.0.6'
 gem 'devise', '1.2.1'
 gem 'tiny_mce'
 gem 'kaminari', '0.10.4'
-gem 'nifty-generators', '0.4.6'
 gem 'jquery-rails', '0.2.7'
+gem 'paperclip', '2.3.11'
 gem 'web-app-theme', '>= 0.6.2'
-gem "paperclip"
-gem 'heroku'
 gem 'client_side_validations', '3.0.0'
 
 group :test, :development do
