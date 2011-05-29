@@ -29,4 +29,28 @@ class HomeController < ApplicationController
       format.js
     end
   end
+
+  def articles_by_max
+    @articles = Article.all.sort {|a,b| b.votes.count <=> a.votes.count }
+
+    response do
+      format.js
+    end
+  end
+
+  def articles_by_min
+    @articles = Article.all.sort {|a,b| a.votes.count <=> b.votes.count }
+
+    response do
+      format.js
+    end
+  end
+
+  def articles_by_date
+    @articles = Article.order("created_at").page(params[:page]).per(3)
+
+    response do
+      format.js
+    end
+  end
 end
