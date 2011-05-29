@@ -8,15 +8,16 @@ class HomeController < ApplicationController
   def vote
     if params[:user_id].present? && params[:article_id].present?
       voter = User.find(params[:user_id])
-      if voter.present?
-        if voter.votes.where(:article_id => params[:article_id]).present?
+      article = Article.find(params[:article_id])
+      if voter.present? && article.present?
+        if voter.votes.where(:article_id => article.id).present?
           @voted = true
         else
-          voter.votes.create(:article_id => params[:article_id], :result => params[:result])
+          voter.votes.create(:article_id => article.id, :result => params[:result])
           if params[:result] == 'for'
-            @votes_for = voter.votes.for.where(:article_id => params[:article_id]).count
+            @votes_for = voter.votes.for.where(:article_id => article.id).count
           elsif params[:result] == 'against'
-            @votes_against = voter.votes.against.where(:article_id => params[:article_id]).count
+            @votes_against = voter.votes.against.where(:article_id => article.id).count
           end
         end
       end

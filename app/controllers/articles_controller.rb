@@ -84,4 +84,21 @@ class ArticlesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  def comment
+    if params[:user_id].present? && params[:article_id].present?
+      commenter = User.find(params[:user_id])
+      article = Article.find(params[:article_id])
+      if commenter.present? && article.present?
+        commenter.comments.create(:article_id => article.id, :description => params[:description])
+        @comments = article.comments
+      end
+    else
+      @error = true
+    end
+
+    response do
+      format.js
+    end
+  end
 end

@@ -25,7 +25,7 @@ $(function() {
      <p><%= truncate(article.description, :length => 550) %></p>
      <strong class="votes_for"><%= article.votes.for.count %></strong> <%= link_to("Vote on Article", "javascript: void(0);", :class => 'vote_on') %> |
      <strong class="votes_against"><%= article.votes.against.count %></strong> <%= link_to("Vote against Article", "javascript: void(0);", :class => 'vote_against') %> |
-     <%= link_to "Comment on Article" %><br /><br />
+     <strong class="comments"><%= article.comments.count %></strong> <%= link_to("Comment on Article", user_article_path(article.user, article)) %><br /><br />
   </div>
 <% end %><br /><br/><br />
 
