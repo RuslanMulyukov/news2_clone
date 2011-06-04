@@ -3,9 +3,13 @@ class HomeController < ApplicationController
   
   def index
     @articles = Article.order("created_at").page(params[:page]).per(3)
+
+    @search = Article.search(params[:search])
+  # @articles = @search.all
+
   end
 
-  def vote
+     def vote
     if params[:user_id].present? && params[:article_id].present?
       voter = User.find(params[:user_id])
       article = Article.find(params[:article_id])
@@ -21,7 +25,7 @@ class HomeController < ApplicationController
           end
         end
       end
-    else  
+    else
       @error = true
     end
 
@@ -29,6 +33,8 @@ class HomeController < ApplicationController
       format.js
     end
   end
+
+
 
   def articles_by_max
     @articles = Article.all.sort {|a,b| b.votes.count <=> a.votes.count }
@@ -53,4 +59,9 @@ class HomeController < ApplicationController
       format.js
     end
   end
+
+
 end
+
+
+ 

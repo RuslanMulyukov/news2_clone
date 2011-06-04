@@ -6,4 +6,9 @@ class Vote < ActiveRecord::Base
 
   scope :for, :conditions => { :result => 'for' }
   scope :against, :conditions => { :result => 'against' }
+
+
+
+
+
 end

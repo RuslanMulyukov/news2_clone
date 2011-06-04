@@ -44,6 +44,8 @@ class VotesController < ApplicationController
   def create
     @vote = current_user.votes.new(params[:vote])
 
+  
+
     respond_to do |format|
       if @vote.save
         format.html { redirect_to(user_vote_path(current_user, @vote), :notice => 'Vote was successfully created.') }

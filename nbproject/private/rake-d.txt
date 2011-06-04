@@ -44,6 +44,7 @@ doc\:clobber_plugins=
 doc\:clobber_rails=
 doc\:guides=
 doc\:plugins=
+doc\:plugins\:meta_search=
 doc\:rails=
 doc\:reapp=
 doc\:rerails=

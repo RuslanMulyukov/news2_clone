@@ -6,7 +6,7 @@ class ArticlesController < ApplicationController
   # GET /articles.xml
   def index
     @articles = current_user.articles
-
+  
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @articles }
@@ -45,6 +45,9 @@ class ArticlesController < ApplicationController
   # POST /articles.xml
   def create
     @article = current_user.articles.new(params[:article])
+
+
+
 
     respond_to do |format|
       if @article.save

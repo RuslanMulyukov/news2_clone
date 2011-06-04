@@ -1,26 +1,31 @@
 <script type="text/javascript">
 
 $(function() {
-  $('.max_on').click(function() {
+  $('.max_on').live("click", function(e) {
     $.get("<%= articles_by_max_path %>");
+     e.preventDefault();
   });
 
-  $('.min_on').click(function() {
+  $('.min_on').live("click", function(e) {
     $.get("<%= articles_by_min_path %>");
+     e.preventDefault();
   });
 
-  $('.date_on').click(function() {
+  $('.date_on').live("click", function(e) {
     $.get("<%= articles_by_date_path %>");
+     e.preventDefault();
   });
   
-  $('.vote_on').click(function() {
+  $('.vote_on').live("click", function(e) {
     var id = $(this).parents('.article').attr('id');
     $.post("<%= vote_path %>", { user_id : "<%= current_user.id %>", article_id : id, result : 'for' } );
+   e.preventDefault();
   });
 
-  $('.vote_against').click(function() {
+  $('.vote_against').live("click", function(e) {
     var id = $(this).parents('.article').attr('id');
     $.post("<%= vote_path %>", { user_id : "<%= current_user.id %>", article_id : id, result : 'against' } );
+   e.preventDefault();
   });
 });
 
@@ -28,12 +33,23 @@ $(function() {
 
 <h1><strong>News</strong></h1>
 
- <% if @articles.present? %>
+
+  <%= form_for @search, :url => home_index_path, :html => {:method => :get} do |f| %>
+    <%= f.label :title_contains %>
+    <%= f.text_field :title_contains %><br />
+   <br />
+    <%= f.submit %>
+  <% end %>
+
+ 
+<br />
+
+<% if @articles.present? %>
  <%= link_to 'Add new Article', new_user_article_path(current_user.id)%>|
  <%= link_to("Get last news", "javascript: void(0);", :class => 'date_on') %>
  <%= link_to("Sort by max rating", "javascript: void(0);", :class => 'max_on') %>
  <%=link_to("Sort by min rating", "javascript: void(0);", :class => 'min_on') %>
- <% end %>
+<% end %>
 <br /><br />
 
 <%= paginate @articles %>

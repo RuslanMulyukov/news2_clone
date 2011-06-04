@@ -7,4 +7,5 @@ class Article < ActiveRecord::Base
   validates :title, :description, :presence => true
   validates_uniqueness_of :title
   validates_length_of :title, :in => 5..150
+
 end
