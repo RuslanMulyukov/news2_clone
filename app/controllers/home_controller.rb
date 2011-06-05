@@ -2,7 +2,7 @@ class HomeController < ApplicationController
   before_filter :authenticate_user!
   
   def index
-    @articles = Article.order("created_at").page(params[:page]).per(3)
+    @articles = Article.recent.page(params[:page]).per(3)
 
     @search = Article.search(params[:search])
   # @articles = @search.all
@@ -53,7 +53,7 @@ class HomeController < ApplicationController
   end
 
   def articles_by_date
-    @articles = Article.order("created_at").page(params[:page]).per(3)
+    @articles = Article.recent.page(params[:page]).per(3)
 
     response do
       format.js

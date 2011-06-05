@@ -44,6 +44,8 @@ class VotesController < ApplicationController
   def create
     @vote = current_user.votes.new(params[:vote])
 
+
+
   
 
     respond_to do |format|

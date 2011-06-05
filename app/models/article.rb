@@ -8,4 +8,6 @@ class Article < ActiveRecord::Base
   validates_uniqueness_of :title
   validates_length_of :title, :in => 5..150
 
+  scope :recent, Article.order("created_at")
+
 end
